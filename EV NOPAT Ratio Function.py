@@ -1,3 +1,7 @@
+'''
+08/25/2024: Changed cash source from qtr bal sheet from cash cash eqv short term inv to cash and cash eqv
+'''
+
 import yfinance as yf
 
 def calculate_ev_nopat_ratio(symbol):
@@ -26,7 +30,7 @@ def calculate_ev_nopat_ratio(symbol):
     total_debt = qtr_bal_sheet['Total Debt'].iloc[0]
     print("Total Debt:", total_debt)
     # Retrieve Cash, Cash Eqv and Short Term Investments
-    cash = qtr_bal_sheet['Cash Cash Equivalents And Short Term Investments'].iloc[0]
+    cash = qtr_bal_sheet['Cash And Cash Equivalents'].iloc[0]
     print("Total Cash:", cash)
     # Calculate Enterprise Value (EV)
     if market_cap != 'N/A' and total_debt != 'N/A' and cash != 'N/A':
@@ -35,7 +39,9 @@ def calculate_ev_nopat_ratio(symbol):
     else:
         return 'N/A'
     
-    
+    '''
+    Bank stocks dont have EBIT value in YF. Need to find a workaround.
+    '''
     # Calculate TTM Operating Income (EBIT)
     ttm_ebit = qtr_income_stmt['EBIT'].iloc[:4].sum()
     print("EBIT:", ttm_ebit)
@@ -57,7 +63,7 @@ def calculate_ev_nopat_ratio(symbol):
     return ev_nopat_ratio
 
 # Example usage
-symbol = 'MU'
+symbol = 'SMCI'
 ev_nopat_ratio = calculate_ev_nopat_ratio(symbol)
 
 print(f"EV/NOPAT ratio for {symbol}: {ev_nopat_ratio}")

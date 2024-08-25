@@ -1,3 +1,8 @@
+'''
+08/25/2024: Changed cash source from qtr bal sheet from cash cash eqv short term inv to cash and cash eqv
+'''
+
+
 import yfinance as yf
 
 def calculate_cash_runway(symbol):
@@ -12,8 +17,8 @@ def calculate_cash_runway(symbol):
     qtr_bal_sheet = stock.quarterly_balance_sheet.T
     print(qtr_bal_sheet)
 
-    # Retrieve Cash, Cash Eqv and Short Term Investments
-    cash = qtr_bal_sheet['Cash Cash Equivalents And Short Term Investments'].iloc[0]
+    # Retrieve Cash and Cash Eqv
+    cash = qtr_bal_sheet['Cash And Cash Equivalents'].iloc[0]
     print("Total Cash:", cash)
     
     
@@ -27,9 +32,9 @@ def calculate_cash_runway(symbol):
     if runway_years < 0:
         return print(f"{symbol} is cashflow positive")
     else: 
-        return print(f"Company runway in years for {symbol}: {runway}")
+        return print(f"Company runway in years for {symbol}: {runway_years}")
 
 # Example usage
-symbol = 'AAPL'
+symbol = 'SMCI'
 calculate_cash_runway(symbol)
 

@@ -1,6 +1,6 @@
 import yfinance as yf
 
-stock = yf.Ticker('MU')
+stock = yf.Ticker('NU')
     
 # Retrieve quarterly financials
 qtr_income_stmt = stock.quarterly_financials

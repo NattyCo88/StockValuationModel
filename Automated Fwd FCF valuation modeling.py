@@ -303,7 +303,10 @@ class StockData:
 
         print(f"P/S Ratios for similar companies: {self.ps_ratios}")
         return self.ps_ratios
-    
+
+''' 
+Add in Feature for forward valuation based on 5th year and potential upside and yearly CAGR
+'''
 
 stock_data = StockData()
 stock_data.get_user_input_ticker()
